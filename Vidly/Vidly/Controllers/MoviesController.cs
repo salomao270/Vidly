@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
@@ -18,10 +19,25 @@ namespace Vidly.Controllers
             // return new EmptyResult();
             // return RedirectToAction("Index", "Home");   // (nameOfTheAction, nameOfTheController);
             // return RedirectToAction("Index", "Home", new { page = 1, sortBy = "name" } );
-            return View(movie);
+            var customers = new List<Customer>
+            {
+                new Customer { Name = "Customer 1"},
+                new Customer { Name = "Customer 2"},
+            };
+
+            var viewModel = new RandomMovieViewModel
+            {
+                Movie = movie,
+                Customers = customers
+            };
+
+            // return View(movie);
+            return View(viewModel);
         }
 
-        public ActionResult ByReleaseDate(int year, int month)
+        // Route(url_template), template: the pattern of the route to match"
+        [Route("movies/released/{year}/{month:regex(\\d{2}):range(1, 12)}")]        // regex(regular_expression) to apply regular expression, \\d{2} is a constraint which means matchs 2 digits such: 04
+        public ActionResult ByReleaseYear(int year, int month)
         {
             return Content(year + "/" + month);
         }

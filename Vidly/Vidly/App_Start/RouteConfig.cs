@@ -13,13 +13,17 @@ namespace Vidly
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                "MoviesByReleaseDate",
-                "movies/released/{year}/{month}",
-                new { controller = "Movies", action = "ByReleaseDate"},
-                // new { year = "\\d{4}", month = "\\d{2}" });      // without @"" must insert one more \ just like: \\d instead of \d
-                // new { year = @"\d{4}", month = @"\d{2}" });      // Regular Expression, \d represents digit number
-                new { year = @"2015|2016", month = @"\d{2}" });         // limiting year parameter from 2015 to 2016
+            // this call enable Attributes Routing, it makes an "dynamic match" between our custom route and its correspondent action in Controller
+            routes.MapMvcAttributeRoutes();
+
+
+            //routes.MapRoute(
+            //    "MoviesByReleaseDate",
+            //    "movies/released/{year}/{month}",
+            //    new { controller = "Movies", action = "ByReleaseDate"},
+            //    // new { year = "\\d{4}", month = "\\d{2}" });      // without @"" must insert one more \ just like: \\d instead of \d
+            //    // new { year = @"\d{4}", month = @"\d{2}" });      // Regular Expression, \d represents digit number
+            //    new { year = @"2015|2016", month = @"\d{2}" });         // limiting year parameter from 2015 to 2016
 
             routes.MapRoute(
                 name: "Default",
