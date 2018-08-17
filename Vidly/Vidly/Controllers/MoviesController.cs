@@ -36,7 +36,7 @@ namespace Vidly.Controllers
         }
 
         // Route(url_template), template: the pattern of the route to match"
-        [Route("movies/released/{year}/{month:regex(\\d{2}):range(1, 12)}")]        // regex(regular_expression) to apply regular expression, \\d{2} is a constraint which means matchs 2 digits such: 04
+        [Route("movies/released/{year}/{month:regex(\\d{2}):range(1, 12)}")]        // regex(regular_expression) to apply regular expression, \\d{2} is a constraint which means matchs 2 digits such as: 04
         public ActionResult ByReleaseYear(int year, int month)
         {
             return Content(year + "/" + month);

@@ -13,7 +13,7 @@ namespace Vidly
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            // this call enable Attributes Routing, it makes an "dynamic match" between our custom route and its correspondent action in Controller
+            // this call enable Attributes Routing, it makes a "dynamic match" between our custom route and its correspondent action in MoviesController
             routes.MapMvcAttributeRoutes();
 
 
