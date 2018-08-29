@@ -235,6 +235,22 @@
     <Compile Include="Migrations\201808291927566_updateMembershipTypeName.Designer.cs">
       <DependentUpon>201808291927566_updateMembershipTypeName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808292132164_AddCustomerBirthday.cs" />
+    <Compile Include="Migrations\201808292132164_AddCustomerBirthday.Designer.cs">
+      <DependentUpon>201808292132164_AddCustomerBirthday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808292201248_UpdateCustomerBirthdate.cs" />
+    <Compile Include="Migrations\201808292201248_UpdateCustomerBirthdate.Designer.cs">
+      <DependentUpon>201808292201248_UpdateCustomerBirthdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808292203009_PopulateCustomerBirthdate.cs" />
+    <Compile Include="Migrations\201808292203009_PopulateCustomerBirthdate.Designer.cs">
+      <DependentUpon>201808292203009_PopulateCustomerBirthdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808292305593_UpdateMembershipTypeNameToNotNull.cs" />
+    <Compile Include="Migrations\201808292305593_UpdateMembershipTypeNameToNotNull.Designer.cs">
+      <DependentUpon>201808292305593_UpdateMembershipTypeNameToNotNull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -352,6 +368,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808291927566_updateMembershipTypeName.resx">
       <DependentUpon>201808291927566_updateMembershipTypeName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808292132164_AddCustomerBirthday.resx">
+      <DependentUpon>201808292132164_AddCustomerBirthday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808292201248_UpdateCustomerBirthdate.resx">
+      <DependentUpon>201808292201248_UpdateCustomerBirthdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808292203009_PopulateCustomerBirthdate.resx">
+      <DependentUpon>201808292203009_PopulateCustomerBirthdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808292305593_UpdateMembershipTypeNameToNotNull.resx">
+      <DependentUpon>201808292305593_UpdateMembershipTypeNameToNotNull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
