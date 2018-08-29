@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
+using System.Data.Entity;
 // using Vidly.ViewModels;
 
 namespace Vidly.Controllers
@@ -31,7 +32,7 @@ namespace Vidly.Controllers
 
             // this customer's property is a DB set defined in our DB context
             // it really get customers from database when Entity Framework iterates over this object (its called deferred execution, for that reason we insert Tolist() method to gets at this time.
-            var customers = _context.Customers.ToList();
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
 
 
             return View(customers);
