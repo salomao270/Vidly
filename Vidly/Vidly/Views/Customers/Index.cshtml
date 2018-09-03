@@ -25,7 +25,8 @@ else
             @foreach (var customer in Model)
             {
             <tr>
-                <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>
+                @*new { id = customer.Id } is an anonimous object that is sent to the Edit Action as parameter.*@
+                <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
                 <td>@customer.MembershipType.MembershipTypeName</td>
             </tr>
             }
