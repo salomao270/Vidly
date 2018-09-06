@@ -58,11 +58,6 @@ namespace Vidly.Controllers
             return Content(year + "/" + month);
         }
 
-        public ActionResult Edit(int id)
-        {
-            return Content("id: " + id);
-        }
-
         public ActionResult Index()
         {
             // var movies = GetMovies();
@@ -83,15 +78,57 @@ namespace Vidly.Controllers
             }
             return View(movie);
         }
+        
+        public ActionResult New()
+        {
+            var genres = _context.Genres.ToList();
+            var viewModel = new MovieFormViewModels
+            {
+                Genres = genres
+            };
+            return View("MovieForm", viewModel);
+        }
 
-        //public IEnumerable<Movie> GetMovies()
-        //{
-        //    return new List<Movie>
-        //    {
-        //        new Movie { Id = 1, Name = "Shrek" },
-        //        new Movie { Id = 2, Name = "Em busca da felicidade" }
-        //    };
-        //}
+        [HttpPost]
+        public ActionResult Save(Movie movie)
+        {
+            // new movie
+            if (movie.Id == 0)
+            {
+                movie.DateAdded = DateTime.Now;
+                _context.Movies.Add(movie);
+            }
+
+            // existing movie
+            else
+            {
+                var movieInDb = _context.Movies.SingleOrDefault(m => m.Id == movie.Id);
+                movieInDb.Name = movie.Name;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+                movieInDb.GenreId = movie.GenreId;
+                movieInDb.Stock = movie.Stock;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Movies");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+
+            if (movie == null)
+                return HttpNotFound();
+
+            var moviesViewModel = new MovieFormViewModels
+            {
+                Movie = movie,
+                Genres = _context.Genres.ToList()
+            };
+
+            return View("MovieForm", moviesViewModel);
+        }
 
     }
 }
