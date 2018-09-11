@@ -29,6 +29,7 @@ namespace Vidly.Controllers
 
             var viewModel = new CustomerFormViewModel()
             {
+                Customer = new Customer(),
                 MembershipTypes = memberhsipTypes
             };
 
@@ -37,9 +38,20 @@ namespace Vidly.Controllers
 
         // When New.cshtml form send their request data to this Action, ASP.NET MVC will bind that form request data to this viewModel object with all that values encapsulated in their object properties.
         [HttpPost]
-        // public ActionResult Create(NewCustomerViewModel viewModel)
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)       // because our form request data in CustomerForm.cshtml key values are Customer type, MVC could binds it as Customer object as well
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+
+                return View("CustomerForm", viewModel);
+            }
+
             // it is a new customer, so it is add process
             if (customer.Id == 0)
                 _context.Customers.Add(customer);
