@@ -275,6 +275,10 @@
     <Compile Include="Migrations\201809101329284_UpdateMovies_ChangedAttributeType.Designer.cs">
       <DependentUpon>201809101329284_UpdateMovies_ChangedAttributeType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809122138345_UpdateMovies_ChangedReleaseDateToRequired.cs" />
+    <Compile Include="Migrations\201809122138345_UpdateMovies_ChangedReleaseDateToRequired.Designer.cs">
+      <DependentUpon>201809122138345_UpdateMovies_ChangedReleaseDateToRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -429,6 +433,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809101329284_UpdateMovies_ChangedAttributeType.resx">
       <DependentUpon>201809101329284_UpdateMovies_ChangedAttributeType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809122138345_UpdateMovies_ChangedReleaseDateToRequired.resx">
+      <DependentUpon>201809122138345_UpdateMovies_ChangedReleaseDateToRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
