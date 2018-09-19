@@ -19,7 +19,7 @@ namespace Vidly.Dtos
 
         public byte MembershipTypeId { get; set; }              // Entity Framework recognizes this attribute as FK and apply it in database as FK.
 
-        [Min18YearsIfAMember]
+        // [Min18YearsIfAMember]
         public DateTime? Birthdate { get; set; }
     }
 }
