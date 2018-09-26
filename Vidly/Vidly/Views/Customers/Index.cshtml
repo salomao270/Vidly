@@ -41,6 +41,8 @@ else
 {
         <script>
             $(document).ready(function () {
+                $("#customers").DataTable();
+
                 // get the customers table and find all elements with this class
                 $("#customers").on("click", ".js-delete", function () {
                     var button = $(this);
