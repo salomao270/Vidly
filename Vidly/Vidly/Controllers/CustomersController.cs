@@ -92,17 +92,13 @@ namespace Vidly.Controllers
         // route with this argument: url: "{controller}/{action}/{id}"
         public ActionResult Index()
         {
-            // var customers = GetCustomers();
-
             // this customer's property is a DB set defined in our DB context
             // it really get customers from database when Entity Framework iterates over this object (its called deferred execution, for that reason we insert Tolist() method to gets at this time.
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
+            // var customers = _context.Customers.Include(c => c.MembershipType).ToList();            
+            // return View(customers);
 
-
-            return View(customers);
-            // it was an ViewModel example
-            // ViewCustomersViewModel viewCustomers = new ViewCustomersViewModel { Customers = customers };
-            // return View(viewCustomers);
+            // Customer's data now are get by the an API calling, my Ajax code at Index.cshtml call that API to get it with JSON format which improves perfomance in case of several datas.
+            return View();
         }
 
         //[Route("Customers/{id}")]
