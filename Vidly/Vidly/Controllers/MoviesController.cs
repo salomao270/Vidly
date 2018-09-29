@@ -60,11 +60,11 @@ namespace Vidly.Controllers
 
         public ActionResult Index()
         {
-            // var movies = GetMovies();
-            var movies = _context.Movies.Include(m => m.GenreType).ToList();
+            // var movies = _context.Movies.Include(m => m.GenreType).ToList();
+            // return View(movies);
 
-            // MVC pattern will search for controllerName/Index.cshtml
-            return View(movies);
+            // now the movies is return by API
+            return View();
         }
 
         public ActionResult Details(int id)

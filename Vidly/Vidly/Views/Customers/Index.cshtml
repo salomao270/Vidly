@@ -26,6 +26,7 @@
             var table = $("#customers").DataTable({
                 ajax: {
                     url: "/api/customers",
+                    // dataSrc is an array os customers objects, so isnt necessary reference it.
                     dataSrc: ""
                 },
                 columns: [
@@ -47,17 +48,18 @@
                 ]
             });
 
-            // get the customers table and find all elements with this class
+            // get the customers table and find all elements with this html id attribute #customers
             $("#customers").on("click", ".js-delete", function () {
                 var button = $(this);
 
-                bootbox.confirm("Are you sure you want to delete this custmer", function (result) {
+                bootbox.confirm("Are you sure you want to delete this customer", function (result) {
                     if (result) {
                         $.ajax({
                             url: "/api/customers/" + button.attr("data-customer-id"),
                             method: "DELETE",
                             success: function () {
-                                table.row(button.parents("tr")).remove().draw();
+                                table.row(button.parents("tr")).remove();
+                                table.draw();
                             }
                         });
                     }

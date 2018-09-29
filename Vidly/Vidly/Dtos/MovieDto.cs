@@ -25,5 +25,7 @@ namespace Vidly.Dtos
 
         [Required]
         public byte GenreId { get; set; }           // entity Framework recognizes it as Foreign Key
+
+        public GenreDto GenreType { get; set; }
     }
 }

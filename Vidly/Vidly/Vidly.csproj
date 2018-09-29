@@ -217,6 +217,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
+    <Compile Include="Dtos\GenreDto.cs" />
     <Compile Include="Dtos\MembershipTypeDto.cs" />
     <Compile Include="Dtos\MovieDto.cs" />
     <Compile Include="Global.asax.cs">
@@ -297,6 +298,14 @@
     <Compile Include="Migrations\201809122138345_UpdateMovies_ChangedReleaseDateToRequired.cs" />
     <Compile Include="Migrations\201809122138345_UpdateMovies_ChangedReleaseDateToRequired.Designer.cs">
       <DependentUpon>201809122138345_UpdateMovies_ChangedReleaseDateToRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809291540001_Genre model updated a property name.cs" />
+    <Compile Include="Migrations\201809291540001_Genre model updated a property name.Designer.cs">
+      <DependentUpon>201809291540001_Genre model updated a property name.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809291547465_UpdateGenre.cs" />
+    <Compile Include="Migrations\201809291547465_UpdateGenre.Designer.cs">
+      <DependentUpon>201809291547465_UpdateGenre.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -632,6 +641,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809122138345_UpdateMovies_ChangedReleaseDateToRequired.resx">
       <DependentUpon>201809122138345_UpdateMovies_ChangedReleaseDateToRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809291540001_Genre model updated a property name.resx">
+      <DependentUpon>201809291540001_Genre model updated a property name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809291547465_UpdateGenre.resx">
+      <DependentUpon>201809291547465_UpdateGenre.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

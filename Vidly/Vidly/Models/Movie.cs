@@ -25,10 +25,10 @@ namespace Vidly.Models
         [Range(1, 20)]
         public int Stock { get; set; }
         
-        public Genre GenreType { get; set; }        // navigation type between objects in application
-
         [Required]
         [Display(Name = "Genre")]
         public byte GenreId { get; set; }           // entity Framework recognizes it as Foreign Key
+
+        public Genre GenreType { get; set; }        // navigation type between objects in application
     }
 }
