@@ -68,14 +68,14 @@ namespace Vidly.Controllers.Api
         {
             if (!ModelState.IsValid)
             {
-                BadRequest();
+                return BadRequest();
             }
 
             var movieInDb = _context.Movies.SingleOrDefault(m => m.Id == id);
 
             if (movieInDb == null)
             {
-                NotFound();
+                return NotFound();
             }
 
             Mapper.Map(movieDto, movieInDb);
@@ -93,7 +93,7 @@ namespace Vidly.Controllers.Api
 
             if (movie == null)
             {
-                NotFound();
+                return NotFound();
             }
             _context.Movies.Remove(movie);
             _context.SaveChanges();

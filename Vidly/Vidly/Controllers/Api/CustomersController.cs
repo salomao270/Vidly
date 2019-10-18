@@ -81,13 +81,13 @@ namespace Vidly.Controllers.Api
         {
             if (!ModelState.IsValid)
             {
-                BadRequest();
+                return BadRequest();
             }
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customerInDb == null)
             {
-                NotFound();
+                return NotFound();
             }
 
             // Mapper.Map<sourceType, targetType>(sourceObject, targetObject)
@@ -106,7 +106,7 @@ namespace Vidly.Controllers.Api
 
             if (customerInDb == null)
             {
-                NotFound();
+                return NotFound();
             }
             _context.Customers.Remove(customerInDb);
             _context.SaveChanges();
