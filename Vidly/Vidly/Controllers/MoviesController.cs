@@ -63,8 +63,12 @@ namespace Vidly.Controllers
             // var movies = _context.Movies.Include(m => m.GenreType).ToList();
             // return View(movies);
 
-            // now the movies is return by API
-            return View();
+            if (User.IsInRole(RoleName.CanManageMovies))            
+                // the movies is return by API
+                return View("List");            
+            else
+                // the movies is return by API
+                return View("ReadOnlyList");
         }
 
         public ActionResult Details(int id)
@@ -79,6 +83,8 @@ namespace Vidly.Controllers
             return View(movie);
         }
         
+        // This RoleName is a customized class with CanManageMovies property to centralize this autorization name (avoiding magic string)
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var genres = _context.Genres.ToList();
