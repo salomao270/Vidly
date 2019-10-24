@@ -21,15 +21,20 @@ namespace Vidly.Controllers.Api
         }
 
         // GET /api/customers
-        public IHttpActionResult GetCustomers()
+        public IHttpActionResult GetCustomers(string query = null)
         {
-            // return _context.Customers.ToList();
-            var customer = _context.Customers
-                .Include(c => c.MembershipType)
+            var customersQuery = _context.Customers
+                .Include(c => c.MembershipType);
+
+            //applied this filter based on a auto-complete resource applied to customer field in a form on Rental View.
+            if (!String.IsNullOrWhiteSpace(query))
+                customersQuery = customersQuery.Where(c => c.Name.Contains(query));
+
+            var customerDtos = customersQuery
                 .ToList()
                 .Select(Mapper.Map<Customer, CustomerDto>);   // Mapper.Map<sourceType, targetType>()
 
-            return Ok(customer);
+            return Ok(customerDtos);
         }
 
         // GET /api/customers/1
