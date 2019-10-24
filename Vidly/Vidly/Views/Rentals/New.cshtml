@@ -17,7 +17,7 @@
     <div class="form-group">
         <label>Movie</label>
         <div class="tt-container">
-            <input id="movie" type="text" value="" class="form-control" />
+            <input id="movie" data-rule-validMovieAtList="true" type="text" value="" class="form-control" />
         </div>
     </div>
 
@@ -92,7 +92,11 @@
                 return vm.customerId && vm.customerId !== 0;
             }, "Please select a validade customer.");
 
-            //validate method from jquery plugin
+            $.validator.addMethod("validMovieAtList", function () {
+                return vm.movieIds.length > 0;
+            }, "Please select at least one movie.")
+
+            //validate method from jquery plugin, it checks if the form data is valid
             $("#newRental").validate({
                 submitHander: function () {
                     e.preventDefault();
