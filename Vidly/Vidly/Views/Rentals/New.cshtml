@@ -9,12 +9,12 @@
 <form>
     <div class="form-group">
         <label>Customer</label>
-        <input id="customer" type="text" value="" autocomplete="on" class="form-control" />
+        <input id="customer" type="text" value="" class="form-control" />
     </div>
 
     <div class="form-group">
         <label>Movie</label>
-        <input type="text" value="" class="form-control" />
+        <input id="movie" type="text" value="" class="form-control" />
     </div>
 
     <button class="btn btn-primary">Submit</button>
@@ -47,6 +47,28 @@
                     source: customers
                 }).on("typeahead:select", function (e, customer) {
                     vm.customerId = customer.customerId;
+                });
+            
+            var movies = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/api/movies?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#movie').typeahead({
+                hint: true,
+                minLength: 3,
+                highlight: true
+            }, {
+                    name: 'movies',
+                    display: 'name',
+                    limit: 10,
+                    source: movies
+                }).on("typeahead:select", function (e, movie) {
+                    vm.movieId = movie.movieId;
                 });
         });
     </script>
