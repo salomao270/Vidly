@@ -21,6 +21,9 @@ namespace Vidly.Controllers.Api
         [HttpPost]
         public IHttpActionResult CreateNewRentals(NewRentalDto newRental)
         {
+            if (newRental.MovieIds.Count == 0)
+                return BadRequest("No Movie Ids have been given.");
+
             //getting customers in database
             var customerInDb = _context.Customers                
                 .SingleOrDefault(c => c.Id == newRental.CustomerId);
@@ -30,26 +33,24 @@ namespace Vidly.Controllers.Api
 
             //getting movies in database using a technique to make multiples compares and load them into a list
             var moviesInDb = _context.Movies.Where(
-                m => newRental.MovieIds.Contains(m.Id));
+                m => newRental.MovieIds.Contains(m.Id)).ToList();
 
-            /* getting movies in database using another and simplest way
-                var moviesInDb = new List<Movie>();
-                foreach (var movieId in newRental.MovieIds)
-                {
-                    moviesInDb.Add(_context.Movies.SingleOrDefault(m => m.Id == movieId));
-                }
-            */
+            if (moviesInDb.Count != newRental.MovieIds.Count)
+                return BadRequest("One or more MovieIds are invalid.");
 
-            //for each movie, create a new rental object for that movie and the given customer and then add them into database
             foreach (var movie in moviesInDb)
             {
+                if (movie.NumberAvailable == 0)
+                    return BadRequest("Movie is not available.");
+                movie.NumberAvailable--;
+
                 var rental = new Rental()
-                {
-                    Customer = customerInDb,
-                    Movie = movie,
-                    DateRented = DateTime.Now
-                };
-                _context.Rentals.Add(rental);
+                    {
+                        Customer = customerInDb,
+                        Movie = movie,
+                        DateRented = DateTime.Now
+                    };
+                    _context.Rentals.Add(rental);
             }
             _context.SaveChanges();
 
