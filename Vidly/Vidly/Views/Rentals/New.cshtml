@@ -10,7 +10,7 @@
     <div class="form-group">
         <label>Customer</label>
         <div class="tt-container">
-            <input id="customer" type="text" value="" class="form-control" />
+            <input id="customer" data-rule-validCustomer="true" required type="text" value="" class="form-control" />
         </div>
     </div>
 
@@ -32,6 +32,7 @@
 
 @section scripts
 {
+    @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
 
@@ -86,21 +87,30 @@
                     vm.movieIds.push(movie.id);
                 });
 
-            $("#newRental").submit(function (e) {
-                e.preventDefault();
+            //custom validation
+            $.validator.addMethod("validCustomer", function () {
+                return vm.customerId && vm.customerId !== 0;
+            }, "Please select a validade customer.");
 
-                $.ajax({
-                    url: "/api/newRentals",
-                    method: "post",
-                    data: vm
-                })
-                    .done(function () {
-                        toastr.success("Rentals successfully recorded.");
+            //validate method from jquery plugin
+            $("#newRental").validate({
+                submitHander: function () {
+                    e.preventDefault();
+
+                    $.ajax({
+                        url: "/api/newRentals",
+                        method: "post",
+                        data: vm
                     })
-                    .fail(function () {
-                        toastr.error("Something unexpected happened.");
-                    })
+                        .done(function () {
+                            toastr.success("Rentals successfully recorded.");
+                        })
+                        .fail(function () {
+                            toastr.error("Something unexpected happened.");
+                        })
+                }
             });
+
         });
     </script>
 }
