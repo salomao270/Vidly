@@ -24,7 +24,9 @@ namespace Vidly.Models
         [Display(Name = "Number in Stock")]
         [Range(1, 20)]
         public int Stock { get; set; }
-        
+
+        public int NumberAvailable { get; set; }
+
         [Required]
         [Display(Name = "Genre")]
         public byte GenreId { get; set; }           // entity Framework recognizes it as Foreign Key
